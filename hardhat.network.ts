@@ -70,7 +70,7 @@ if (mnemonic) {
     };
 }
 
-if (infuraApiKey && mnemonic) {
+if (infuraApiKey && (mnemonic || process.env.PRIVATE_KEY)) {
     networks.kovan = {
         url: `https://kovan.infura.io/v3/${infuraApiKey}`,
         accounts: {
@@ -87,6 +87,13 @@ if (infuraApiKey && mnemonic) {
 
     networks.rinkeby = {
         url: `https://rinkeby.infura.io/v3/${infuraApiKey}`,
+        accounts: {
+            mnemonic,
+        },
+    };
+
+    networks.sepolia = {
+        url: `https://sepolia.infura.io/v3/${infuraApiKey}`,
         accounts: {
             mnemonic,
         },
